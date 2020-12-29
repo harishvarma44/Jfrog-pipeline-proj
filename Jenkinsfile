@@ -3,9 +3,9 @@ node{
    def tomcatWeb = '/home/harishk/apache-tomcat-9.0.41/webapps'
    def tomcatBin = '/home/harishk/apache-tomcat-9.0.41/bin'
    def tomcatStatus = ''
-/*   stage('SCM Checkout'){
+   stage('SCM Checkout'){
      git 'https://github.com/harishvarma44/Jfrog-pipeline-proj.git'
-   }*/
+   }
    stage('Compile-Package-create-war-file'){
       // Get maven home path
       def mvnHome =  tool name: 'mvn3.3.9', type: 'maven'   
