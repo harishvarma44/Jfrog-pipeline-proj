@@ -1,15 +1,15 @@
 node{
 
-   def tomcatWeb = 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\webapps'
-   def tomcatBin = 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\bin'
+   def tomcatWeb = '/home/harishk/apache-tomcat-9.0.41/webapps'
+   def tomcatBin = '/home/harishk/apache-tomcat-9.0.41/bin'
    def tomcatStatus = ''
-   stage('SCM Checkout'){
-     git 'https://github.com/sivajavatechie/JenkinsWar.git'
-   }
+/*   stage('SCM Checkout'){
+     git 'https://github.com/harishvarma44/Jfrog-pipeline-proj.git'
+   }*/
    stage('Compile-Package-create-war-file'){
       // Get maven home path
-      def mvnHome =  tool name: 'maven-3', type: 'maven'   
-      bat "${mvnHome}/bin/mvn package"
+      def mvnHome =  tool name: 'mvn3.3.9', type: 'maven'   
+      sh "${mvnHome}/bin/mvn package"
       }
 /*   stage ('Stop Tomcat Server') {
                bat ''' @ECHO OFF
@@ -24,11 +24,11 @@ node{
 '''
    }*/
    stage('Deploy to Tomcat'){
-     bat "copy target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
+     sh "cp target/JenkinsWar.war ${tomcatWeb}/JenkinsWar.war"
    }
       stage ('Start Tomcat Server') {
          sleep(time:5,unit:"SECONDS") 
-         bat "${tomcatBin}\\startup.bat"
+         bat "${tomcatBin}\\startup.sh"
          sleep(time:100,unit:"SECONDS")
    }
 }
