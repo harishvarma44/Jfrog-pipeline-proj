@@ -12,7 +12,7 @@ pipeline {
                git credentialsId: 'git_credentials', url: 'https://github.com/harishvarma44/Jfrog-pipeline-proj.git'
                  }
             }
-        stage('Build') {
+        stage('Build-Code') {
             steps {
                 // Get maven home path
                 //   def mvnHome =  tool name: 'mvn3.3.9', type: 'maven'
@@ -20,7 +20,7 @@ pipeline {
                   }
             }
 
-        stage('Test') {
+        stage('Testing Phase') {
             steps {
                 sh 'mvn test'
             }
@@ -31,11 +31,10 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Tom') {
             steps {
                 sshagent(['jenkins1-slave']) {
-                 
-                sh "scp -o "StrictHostKeyChecking=no target/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/JenkinsWar.war"
+                  sh "scp -o StrictHostKeyChecking=no target/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/JenkinsWar.war"
             }
         }
     }
