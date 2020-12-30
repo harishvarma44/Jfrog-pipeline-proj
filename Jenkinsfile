@@ -37,6 +37,8 @@ pipeline {
                   sh "scp -o StrictHostKeyChecking=no target/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/JenkinsWar.war"
             }
         }
-    }
+      }
+  }
+
 }
 
