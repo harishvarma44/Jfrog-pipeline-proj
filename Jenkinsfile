@@ -14,7 +14,6 @@ pipeline {
             }
         stage('Build-Code') {
             steps {
-                // Get maven home path
                 //   def mvnHome =  tool name: 'mvn3.3.9', type: 'maven'
                    sh "mvn clean package"
                   }
@@ -26,7 +25,7 @@ pipeline {
            }
 //            post {
 //                always {
-//                    junit 'target/surefire-reports/*.xml'
+//                    junit 'target/superfire-reports/*.xml'
 //                }
 //            }
         }
@@ -34,7 +33,7 @@ pipeline {
         stage('Deploy Tom') {
             steps {
                 sshagent(['jenkins1-slave']) {
-                  sh "scp -o StrictHostKeyChecking=no target/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/JenkinsWar.war"
+                  sh "scp -o StrictHostKeyChecking=no target/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/jenkinsWar.war"
             }
         }
       }
