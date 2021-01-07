@@ -35,8 +35,8 @@ pipeline {
             steps {
                 sshagent(credentials:['jenkins1-slave']) {
                  
-                   sh "ssh -o StrictHostKeyChecking=no harishk@192.168.161.7 ${run}"
-//                   sh "scp -o StrictHostKeyChecking=no ${target}/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/JenkinsWar.war"
+//                   sh "ssh -o StrictHostKeyChecking=no harishk@192.168.161.7 ${run}"
+                   sh "scp -o StrictHostKeyChecking=no ${target}/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/JenkinsWar.war"
             }
         }
       }
