@@ -33,7 +33,7 @@ pipeline {
         stage('Deploy Tom') {
             steps {
                 sshagent(['jenkins1-slave']) {
-                  sh "scp -o StrictHostKeyChecking=no target/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/jenkinsWar.war"
+                  sh "scp -o StrictHostKeyChecking=no target/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/JenkinsWar.war"
             }
         }
       }
