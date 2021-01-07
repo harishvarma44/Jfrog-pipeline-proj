@@ -4,7 +4,7 @@ pipeline {
         PATH= "/usr/share/maven/bin:$PATH"
         def tomcatWeb = '/home/harishk/apache-tomcat-9.0.41/webapps'
         def tomcatBin = '/home/harishk/apache-tomcat-9.0.41/bin'
-
+        def target = '/var/lib/jenkins/workspace/Tomcat-war-job/target'
     }
     stages {
         stage('SCM Checkout') {
@@ -33,7 +33,7 @@ pipeline {
         stage('Deploy Tom') {
             steps {
                 sshagent(['jenkins1-slave']) {
-                  sh "scp -o StrictHostKeyChecking=no target/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/JenkinsWar.war"
+                  sh "scp -o StrictHostKeyChecking=no ${target}/JenkinsWar.war harishk@192.168.161.7:${tomcatWeb}/JenkinsWar.war"
             }
         }
       }
